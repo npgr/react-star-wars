@@ -1,43 +1,63 @@
 import { useEffect } from 'react';
-import { useCharacterList } from '../../hooks/useCharacterList';
+import queryString from 'query-string';
+import { RouteComponentProps } from 'react-router';
+import { ROUTES } from '../../routes';
+import useCharacterList from '../../hooks/useCharacterList';
 
-export default function CharacterList() {
-  const [characterListData, fetchCharacterList] = useCharacterList();
+export default function CharacterList({
+  history,
+  location
+}: RouteComponentProps) {
+  const [characterListState, fetchCharacterList] = useCharacterList();
 
   useEffect(() => {
-    fetchCharacterList(1);
-  }, [fetchCharacterList]);
+    const { page } = queryString.parse(location.search, { parseNumbers: true });
+    const parsedPage = typeof page === 'number' ? page : 1;
+    fetchCharacterList(parsedPage);
+  }, [fetchCharacterList, location.search]);
+
+  const goDetail = (id: string) => {
+    history.push(ROUTES.CHARACTER_DETAIL.replace(':id', id));
+  };
+
+  const goListPage = (page: number) => {
+    history.push(`${ROUTES.CHARACTERS}?page=${page}`);
+  };
 
   const {
-    results: characterList,
+    data: characterList,
     loading,
     loaded,
     page,
+    error,
     previous,
     next
-  } = characterListData;
+  } = characterListState;
 
-  console.log('render');
   return (
     <div>
       {loading && <div>loading</div>}
       {loaded && (
         <div>
-          {characterList.map((person, index) => (
-            <div key={index}>{person.name}</div>
+          {characterList.map(({ id, name, gender, height }, index) => (
+            <div key={index} style={{ display: 'flex' }}>
+              <div>{id}</div>-<div>{name}</div>-
+              <button onClick={() => goDetail(id)}>detalle</button>
+            </div>
           ))}
           <button
             disabled={page < 2 || !previous}
-            onClick={() => fetchCharacterList(page - 1)}
+            onClick={() => goListPage(page - 1)}
           >
             Previous
           </button>
           <div>{`Page ${page}`}</div>
-          <button disabled={!next} onClick={() => fetchCharacterList(page + 1)}>
+          <button disabled={!next} onClick={() => goListPage(page + 1)}>
             Next
           </button>
         </div>
       )}
+      {error && <div>{error}</div>}
     </div>
   );
 }

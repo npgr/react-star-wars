@@ -1,5 +1,9 @@
 import Api from './api';
-import { ApiCallStatus, CharacterListData } from './api.d';
+import {
+  ApiCallStatus,
+  CharacterDetailApiResponse,
+  CharacterListApiResponse
+} from './api.d';
 
 export default Api;
-export { ApiCallStatus, CharacterListData };
+export { ApiCallStatus, CharacterDetailApiResponse, CharacterListApiResponse };

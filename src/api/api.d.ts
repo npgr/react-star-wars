@@ -1,10 +1,20 @@
-import { Character } from '../models/Character';
+export interface CharacterDetailApiResponse {
+  url: string;
+  name: string;
+  gender: string;
+  height: string;
+  films: string[];
+}
 
-export interface CharacterListData {
+export interface CharacterListApiResponse {
   count: number;
   previous: null | string;
   next: null | string;
-  results: Character[];
+  results: CharacterDetailApiResponse[];
+}
+
+export interface FilmDetailApiResponse {
+  title: string;
 }
 
 export interface ApiCallStatus {

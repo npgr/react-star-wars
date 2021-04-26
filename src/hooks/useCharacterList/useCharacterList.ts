@@ -1,19 +1,25 @@
 import { useState, useCallback } from 'react';
-import api, { ApiCallStatus, CharacterListData } from '../api';
+import api, { ApiCallStatus } from '../../api';
+import { characterListBuilder } from './useCharacterList.builder';
+import { CharacterList } from '../../models/CharacterList';
 
-interface CharacterListData2 extends CharacterListData, ApiCallStatus {
+interface CharacterListState extends ApiCallStatus {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  data: CharacterList[];
   page: number;
 }
 
-export const useCharacterList = (): [
-  CharacterListData2,
+function useCharacterList(): [
+  CharacterListState,
   (page: number) => Promise<void>
-] => {
-  const EMPTY_DATA: CharacterListData2 = {
+] {
+  const EMPTY_DATA: CharacterListState = {
     count: 0,
     next: null,
     previous: null,
-    results: [],
+    data: [],
     loading: false,
     loaded: false,
     error: false,
@@ -23,7 +29,7 @@ export const useCharacterList = (): [
   const [
     characterListData,
     setCharacterListData
-  ] = useState<CharacterListData2>(EMPTY_DATA);
+  ] = useState<CharacterListState>(EMPTY_DATA);
 
   const fetchApiCharacterList = async (page = 1) => {
     try {
@@ -33,9 +39,14 @@ export const useCharacterList = (): [
         loaded: false,
         error: false
       });
-      const response = await api.getCharacterList(page);
+      const { count, next, previous, results } = await api.getCharacterList(
+        page
+      );
       setCharacterListData({
-        ...response,
+        data: characterListBuilder(results),
+        count,
+        next,
+        previous,
         loading: false,
         loaded: true,
         error: false,
@@ -57,4 +68,6 @@ export const useCharacterList = (): [
   );
 
   return [characterListData, fetchCharacterList];
-};
+}
+
+export default useCharacterList;
