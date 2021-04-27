@@ -33,9 +33,9 @@ function useFilmList(): [FilmListState, (ids: string[]) => void] {
 
       getData().then((data) =>
         setFilmListData({
-          data: data,
-          loading: true,
-          loaded: false,
+          data,
+          loading: false,
+          loaded: true,
           error: false
         })
       );
