@@ -8,7 +8,7 @@ export default function Footer() {
         <a href={ROUTES.HOME}>
           <img src="/img/logo.png" alt="Star Wars" />
         </a>
-        <div>Copiright Text...</div>
+        <div>Copyright Nuno Gonçalves 2021</div>
       </div>
     </FooterBar>
   );

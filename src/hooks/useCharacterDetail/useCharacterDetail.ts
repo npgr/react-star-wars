@@ -61,7 +61,7 @@ function useCharacterDetail(): [
 
   const fetchCharacterDetail = useCallback(
     (id: string) => fetchApiCharacterDetail(id),
-    []
+    [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return [characterDetailData, filmListData, fetchCharacterDetail];

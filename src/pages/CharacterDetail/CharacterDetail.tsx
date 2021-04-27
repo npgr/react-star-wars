@@ -3,16 +3,20 @@ import { RouteComponentProps } from 'react-router';
 import useCharacterDetail from '../../hooks/useCharacterDetail';
 import { PageContainer } from '../../components/UI/PageContainer';
 import { Button } from '../../components/UI/Button';
+import { Section } from './CharacterDetail.styles';
 
 interface MatchParams {
   id: string;
 }
 
-interface CharacterDetailProps extends RouteComponentProps<MatchParams> {}
+interface CharacterDetailProps extends RouteComponentProps<MatchParams> {
+  saveCharacter: Function;
+}
 
 export default function CharacterDetail({
   match,
-  history
+  history,
+  saveCharacter
 }: CharacterDetailProps) {
   const [
     characterDetailData,
@@ -33,6 +37,10 @@ export default function CharacterDetail({
     character: { name, height, gender }
   } = characterDetailData;
 
+  if (loaded) {
+    saveCharacter({ id, name });
+  }
+
   const {
     data: films,
     loading: loadingFilms,
@@ -44,20 +52,24 @@ export default function CharacterDetail({
     <PageContainer>
       {loading && <div>Loading...</div>}
       {loaded && (
-        <div>
-          <div>name: {name}</div>
-          <div>gender: {gender}</div>
-          <div>height: {height}</div>
-          <div>Movies:</div>
+        <Section>
           <div>
-            {loadingFilms && <div>Loading Films...</div>}
-            {loadedFilms && films.map(({ title }) => <div>{title}</div>)}
-            {errorFilms && <div>{errorFilms}</div>}
+            <div>name: {name}</div>
+            <div>gender: {gender}</div>
+            <div>height: {height}</div>
+            <Button onClick={() => history.goBack()}>Go back</Button>
           </div>
-        </div>
+          <div>
+            <div>Movies:</div>
+            <div>
+              {loadingFilms && <div>Loading Films...</div>}
+              {loadedFilms && films.map(({ title }) => <div>{title}</div>)}
+              {errorFilms && <div>{errorFilms}</div>}
+            </div>
+          </div>
+        </Section>
       )}
       {error && <div>{error}</div>}
-      <Button onClick={() => history.goBack()}>Go back</Button>
     </PageContainer>
   );
 }

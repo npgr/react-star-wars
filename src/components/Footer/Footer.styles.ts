@@ -6,6 +6,7 @@ export const FooterBar = styled.div`
   left: 0;
   bottom: 0;
   background-color: #212121;
+  opacity: 0.92;
   height: 4rem;
   padding: 1rem;
   display: flex;

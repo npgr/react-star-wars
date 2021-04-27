@@ -1,17 +1,26 @@
 import { ROUTES } from '../../routes';
-import { HeaderBar, LogoImage, Link, LinkGroup, Filter } from './Header.styles';
+import { SavedCharacter } from '../../hooks/useSavedCharacters';
+import { HeaderBar, BarGroup, LogoImage, Link, Filter } from './Header.styles';
 
-export default function Header() {
+interface HeaderProps {
+  savedCharacters: SavedCharacter[];
+}
+
+export default function Header({ savedCharacters }: HeaderProps) {
   return (
     <HeaderBar>
       <Link href={ROUTES.HOME}>
         <LogoImage src="/img/logo.png" alt="home" />
       </Link>
-      {/* <Links> */}
-      <Link href={ROUTES.CHARACTERS}>Characters</Link>
-      <div>3 last...</div>
-      {/* </Links> */}
-      <Filter placeholder="Search character by name..." />
+      <BarGroup>
+        <Link href={ROUTES.CHARACTERS}>Characters</Link>
+        {savedCharacters.map(({ id, name }) => (
+          <Link key={id} href={ROUTES.CHARACTER_DETAIL.replace(':id', id)}>
+            | {name}
+          </Link>
+        ))}
+        <Filter placeholder="Search character by name..." />
+      </BarGroup>
     </HeaderBar>
   );
 }

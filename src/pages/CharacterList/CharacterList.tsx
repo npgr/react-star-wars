@@ -5,6 +5,7 @@ import { ROUTES } from '../../routes';
 import useCharacterList from '../../hooks/useCharacterList';
 import { PageContainer } from '../../components/UI/PageContainer';
 import { Button } from '../../components/UI/Button';
+import { Pagination } from './CharacterList.styles';
 
 export default function CharacterList({
   history,
@@ -47,16 +48,18 @@ export default function CharacterList({
               <Button onClick={() => goDetail(id)}>detalle</Button>
             </div>
           ))}
-          <Button
-            disabled={page < 2 || !previous}
-            onClick={() => goListPage(page - 1)}
-          >
-            Previous
-          </Button>
-          <div>{`Page ${page}`}</div>
-          <Button disabled={!next} onClick={() => goListPage(page + 1)}>
-            Next
-          </Button>
+          <Pagination>
+            <Button
+              disabled={page < 2 || !previous}
+              onClick={() => goListPage(page - 1)}
+            >
+              Previous
+            </Button>
+            <div>{`Page ${page}`}</div>
+            <Button disabled={!next} onClick={() => goListPage(page + 1)}>
+              Next
+            </Button>
+          </Pagination>
         </div>
       )}
       {error && <div>{error}</div>}

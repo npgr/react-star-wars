@@ -64,7 +64,7 @@ function useCharacterList(): [
 
   const fetchCharacterList = useCallback(
     (page: number) => fetchApiCharacterList(page),
-    []
+    [] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return [characterListData, fetchCharacterList];
