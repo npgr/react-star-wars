@@ -21,14 +21,6 @@ export const LogoImage = styled.img`
   height: auto;
 `;
 
-export const Link = styled.a`
-  text-decoration: none;
-  color: white;
-  :hover {
-    text-decoration: underline;
-  }
-`;
-
 export const BarGroup = styled.div`
   display: flex;
   flex-direction: row;

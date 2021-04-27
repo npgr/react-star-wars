@@ -1,6 +1,7 @@
 import { ROUTES } from '../../routes';
 import { SavedCharacter } from '../../hooks/useSavedCharacters';
-import { HeaderBar, BarGroup, LogoImage, Link, Filter } from './Header.styles';
+import { HeaderBar, BarGroup, LogoImage, Filter } from './Header.styles';
+import { Link } from '../UI/Link';
 
 interface HeaderProps {
   savedCharacters: SavedCharacter[];
