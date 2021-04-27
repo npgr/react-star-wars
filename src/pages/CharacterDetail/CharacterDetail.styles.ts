@@ -10,6 +10,8 @@ export const Section = styled.div`
     margin-top: 2rem;
   }
   label {
+    display: inline-block;
     color: gray;
+    min-width: 5rem;
   }
 `;

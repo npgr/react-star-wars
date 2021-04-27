@@ -28,6 +28,9 @@ export const BarGroup = styled.div`
   div {
     margin: 0 2rem;
   }
+  a {
+    margin-left: 0.5rem;
+  }
 `;
 
 export const Filter = styled.input`
