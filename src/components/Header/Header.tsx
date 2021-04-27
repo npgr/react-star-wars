@@ -1,5 +1,17 @@
-import React from 'react';
+import { ROUTES } from '../../routes';
+import { HeaderBar, LogoImage, Link, LinkGroup, Filter } from './Header.styles';
 
 export default function Header() {
-  return <header className="App-header">start Wars</header>;
+  return (
+    <HeaderBar>
+      <Link href={ROUTES.HOME}>
+        <LogoImage src="/img/logo.png" alt="home" />
+      </Link>
+      {/* <Links> */}
+      <Link href={ROUTES.CHARACTERS}>Characters</Link>
+      <div>3 last...</div>
+      {/* </Links> */}
+      <Filter placeholder="Find character by name..." />
+    </HeaderBar>
+  );
 }
