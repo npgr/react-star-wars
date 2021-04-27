@@ -18,7 +18,11 @@ function useCharacterDetail(): [
       id: '',
       name: '',
       gender: '',
-      height: ''
+      height: '',
+      eyeColor: '',
+      hairColor: '',
+      mass: '',
+      skinColor: ''
     },
     loading: false,
     loaded: false,

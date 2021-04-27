@@ -49,7 +49,7 @@ function useFilmList(): [FilmListState, (ids: string[]) => void] {
     }
   };
 
-  const fetchFilmList = useCallback((id: string[]) => fetchApiFilmList(id), []);
+  const fetchFilmList = useCallback((id: string[]) => fetchApiFilmList(id), []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return [filmListData, fetchFilmList];
 }

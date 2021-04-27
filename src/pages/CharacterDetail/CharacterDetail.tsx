@@ -34,7 +34,7 @@ export default function CharacterDetail({
     loading,
     loaded,
     error,
-    character: { name, height, gender }
+    character: { name, height, gender, eyeColor, skinColor, mass, hairColor }
   } = characterDetailData;
 
   if (loaded) {
@@ -54,16 +54,39 @@ export default function CharacterDetail({
       {loaded && (
         <Section>
           <div>
-            <div>name: {name}</div>
-            <div>gender: {gender}</div>
-            <div>height: {height}</div>
-            <Button onClick={() => history.goBack()}>Go back</Button>
+            <h3>{name}</h3>
+            <div>
+              <label>gender: </label>
+              {gender}
+            </div>
+            <div>
+              <label>eye color: </label>
+              {eyeColor}
+            </div>
+            <div>
+              <label>hair color: </label>
+              {hairColor}
+            </div>
+            <div>
+              <label>skin color: </label>
+              {skinColor}
+            </div>
+            <div>
+              <label>height: </label>
+              {height}
+            </div>
+            <div>
+              <label>mass: </label>
+              {mass}
+            </div>
+            <Button onClick={history.goBack}>Go back</Button>
           </div>
           <div>
-            <div>Movies:</div>
+            <h4>Movies:</h4>
             <div>
               {loadingFilms && <div>Loading Films...</div>}
-              {loadedFilms && films.map(({ title }) => <div>{title}</div>)}
+              {loadedFilms &&
+                films.map(({ title }, index) => <div key={index}>{title}</div>)}
               {errorFilms && <div>{errorFilms}</div>}
             </div>
           </div>

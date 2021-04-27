@@ -9,7 +9,17 @@ export const characterDetailBuilder = (
   if (typeof response !== 'object')
     throw Error('invalid character detail data');
 
-  const { url, name = '', gender = '', height = '', films = [] } = response;
+  const {
+    url,
+    name = '',
+    gender = '',
+    height = '',
+    eye_color = '',
+    hair_color = '',
+    mass = '',
+    skin_color = '',
+    films = []
+  } = response;
 
   if (!name && !url) throw Error('invalid character detail data');
 
@@ -22,7 +32,11 @@ export const characterDetailBuilder = (
       id: getCharacterIdFromUrl(url),
       name,
       gender,
-      height
+      height,
+      eyeColor: eye_color,
+      hairColor: hair_color,
+      mass,
+      skinColor: skin_color
     },
     parsedFilms
   ];

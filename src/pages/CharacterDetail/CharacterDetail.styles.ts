@@ -9,4 +9,7 @@ export const Section = styled.div`
   button {
     margin-top: 2rem;
   }
+  label {
+    color: gray;
+  }
 `;
