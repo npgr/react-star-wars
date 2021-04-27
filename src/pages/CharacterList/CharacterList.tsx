@@ -3,6 +3,8 @@ import queryString from 'query-string';
 import { RouteComponentProps } from 'react-router';
 import { ROUTES } from '../../routes';
 import useCharacterList from '../../hooks/useCharacterList';
+import { PageContainer } from '../../components/UI/PageContainer';
+import { Button } from '../../components/UI/Button';
 
 export default function CharacterList({
   history,
@@ -35,29 +37,29 @@ export default function CharacterList({
   } = characterListState;
 
   return (
-    <div>
+    <PageContainer>
       {loading && <div>loading</div>}
       {loaded && (
         <div>
           {characterList.map(({ id, name, gender, height }, index) => (
             <div key={index} style={{ display: 'flex' }}>
               <div>{id}</div>-<div>{name}</div>-
-              <button onClick={() => goDetail(id)}>detalle</button>
+              <Button onClick={() => goDetail(id)}>detalle</Button>
             </div>
           ))}
-          <button
+          <Button
             disabled={page < 2 || !previous}
             onClick={() => goListPage(page - 1)}
           >
             Previous
-          </button>
+          </Button>
           <div>{`Page ${page}`}</div>
-          <button disabled={!next} onClick={() => goListPage(page + 1)}>
+          <Button disabled={!next} onClick={() => goListPage(page + 1)}>
             Next
-          </button>
+          </Button>
         </div>
       )}
       {error && <div>{error}</div>}
-    </div>
+    </PageContainer>
   );
 }

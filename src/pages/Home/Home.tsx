@@ -1,5 +1,5 @@
-import React from 'react';
+import { PageContainer } from '../../components/UI/PageContainer';
 
 export default function Home() {
-  return <div>Home</div>;
+  return <PageContainer>Home</PageContainer>;
 }
