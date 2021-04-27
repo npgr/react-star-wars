@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 export const HeaderBar = styled.div`
+  position: sticky;
+  background-color: black;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: solid 1px white;
   padding: 1rem;
-  margin-bottom: 1rem;
 `;
 
 export const LogoImage = styled.img`

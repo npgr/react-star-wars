@@ -11,7 +11,7 @@ export default function Header() {
       <Link href={ROUTES.CHARACTERS}>Characters</Link>
       <div>3 last...</div>
       {/* </Links> */}
-      <Filter placeholder="Find character by name..." />
+      <Filter placeholder="Search character by name..." />
     </HeaderBar>
   );
 }
