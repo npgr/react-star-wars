@@ -5,7 +5,8 @@ import { ROUTES } from '../../routes';
 import useCharacterList from '../../hooks/useCharacterList';
 import { PageContainer } from '../../components/UI/PageContainer';
 import { Button } from '../../components/UI/Button';
-import { Pagination } from './CharacterList.styles';
+import { Link } from '../../components/UI/Link';
+import { Pagination, Row, Title } from './CharacterList.styles';
 
 export default function CharacterList({
   history,
@@ -18,10 +19,6 @@ export default function CharacterList({
     const parsedPage = typeof page === 'number' ? page : 1;
     fetchCharacterList(parsedPage);
   }, [fetchCharacterList, location.search]);
-
-  const goDetail = (id: string) => {
-    history.push(ROUTES.CHARACTER_DETAIL.replace(':id', id));
-  };
 
   const goListPage = (page: number) => {
     history.push(`${ROUTES.CHARACTERS}?page=${page}`);
@@ -39,14 +36,21 @@ export default function CharacterList({
 
   return (
     <PageContainer>
-      {loading && <div>loading</div>}
+      <Title>Characters</Title>
+      {loading && <div>loading...</div>}
       {loaded && (
         <div>
           {characterList.map(({ id, name, gender, height }, index) => (
-            <div key={index} style={{ display: 'flex' }}>
-              <div>{id}</div>-<div>{name}</div>-
-              <Button onClick={() => goDetail(id)}>detalle</Button>
-            </div>
+            <Row key={index}>
+              <div className="id">{id}</div>
+              <Link
+                href={ROUTES.CHARACTER_DETAIL.replace(':id', id)}
+                className="name"
+              >
+                {name}
+              </Link>
+              <div className="gender">{gender}</div>
+            </Row>
           ))}
           <Pagination>
             <Button
