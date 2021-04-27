@@ -1,6 +1,7 @@
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { ROUTES } from './routes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import CharacterList from './pages/CharacterList';
 import CharacterDetail from './pages/CharacterDetail';
@@ -15,6 +16,7 @@ function App() {
         <Route path={ROUTES.CHARACTER_DETAIL} component={CharacterDetail} />
         <Redirect to={ROUTES.HOME} />
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
