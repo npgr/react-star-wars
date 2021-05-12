@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This project is focused on use custom hooks with useState instead of Redux
+
 ## Available Scripts
 
 In the project directory, you can run:
