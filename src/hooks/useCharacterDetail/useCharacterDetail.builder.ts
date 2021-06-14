@@ -1,11 +1,11 @@
-import { CharacterDetail } from '../../models/CharacterDetail';
+import { Character } from '../../models/Character';
 import { CharacterDetailApiResponse } from '../../api';
 import { getCharacterIdFromUrl } from '../../utils/character';
 import { getFilmIdFromUrl } from '../../utils/film';
 
 export const characterDetailBuilder = (
   response: CharacterDetailApiResponse
-): [CharacterDetail, string[]] => {
+): [Character, string[]] => {
   if (typeof response !== 'object')
     throw Error('invalid character detail data');
 

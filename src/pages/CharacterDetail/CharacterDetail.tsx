@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
+import CharacterData from '../../components/CharacterData';
 import useCharacterDetail from '../../hooks/useCharacterDetail';
+import { SavedCharacter } from '../../hooks/useSavedCharacters';
 import { PageContainer } from '../../components/UI/PageContainer';
 import { Button } from '../../components/UI/Button';
 import { Section } from './CharacterDetail.styles';
@@ -10,7 +12,7 @@ interface MatchParams {
 }
 
 interface CharacterDetailProps extends RouteComponentProps<MatchParams> {
-  saveCharacter: Function;
+  saveCharacter: (character: SavedCharacter) => void;
 }
 
 export default function CharacterDetail({
@@ -30,15 +32,10 @@ export default function CharacterDetail({
     fetchCharacterDetail(id);
   }, [fetchCharacterDetail, id]);
 
-  const {
-    loading,
-    loaded,
-    error,
-    character: { name, height, gender, eyeColor, skinColor, mass, hairColor }
-  } = characterDetailData;
+  const { loading, loaded, error, character } = characterDetailData;
 
   if (loaded) {
-    saveCharacter({ id, name });
+    saveCharacter({ id, name: character.name });
   }
 
   const {
@@ -54,31 +51,7 @@ export default function CharacterDetail({
       {loaded && (
         <Section>
           <div>
-            <h3>{name}</h3>
-            <div>
-              <label>gender: </label>
-              {gender}
-            </div>
-            <div>
-              <label>eye color: </label>
-              {eyeColor}
-            </div>
-            <div>
-              <label>hair color: </label>
-              {hairColor}
-            </div>
-            <div>
-              <label>skin color: </label>
-              {skinColor}
-            </div>
-            <div>
-              <label>height: </label>
-              {height}
-            </div>
-            <div>
-              <label>mass: </label>
-              {mass}
-            </div>
+            <CharacterData character={character} />
             <Button onClick={history.goBack}>Go back</Button>
           </div>
           <div>

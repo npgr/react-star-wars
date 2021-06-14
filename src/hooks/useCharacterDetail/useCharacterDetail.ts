@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
 import api, { ApiCallStatus } from '../../api';
 import { characterDetailBuilder } from './useCharacterDetail.builder';
-import { CharacterDetail } from '../../models/CharacterDetail';
+import { Character } from '../../models/Character';
 import useFilmList, { FilmListState } from '../useFilmList';
 
 interface CharacterDetailState extends ApiCallStatus {
-  character: CharacterDetail;
+  character: Character;
 }
 
 function useCharacterDetail(): [
