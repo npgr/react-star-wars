@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { Character } from '../../models/Character';
 
 interface Props {
@@ -19,12 +19,12 @@ export default function CharacterData({ character }: Props): ReactElement {
     <>
       <h3>{name}</h3>
       <div>
-            <label>gender: </label>
-            {gender}
+        <label>gender: </label>
+        {gender}
       </div>
       <div>
-            <label>eye color: </label>
-            {eyeColor}
+        <label>eye color: </label>
+        {eyeColor}
       </div>
       <div>
         <label>hair color: </label>

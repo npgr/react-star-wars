@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export default function Header({ savedCharacters }: HeaderProps) {
   return (
-    <HeaderBar>
+    <HeaderBar data-testid="header-bar">
       <Link href={ROUTES.HOME}>
         <LogoImage src="/img/logo.png" alt="home" />
       </Link>

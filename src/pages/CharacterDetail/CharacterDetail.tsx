@@ -55,7 +55,7 @@ export default function CharacterDetail({
             <Button onClick={history.goBack}>Go back</Button>
           </div>
           <div>
-            <h4>Movies:</h4>
+            <h4>The Movies:</h4>
             <div>
               {loadingFilms && <div>Loading Films...</div>}
               {loadedFilms &&
